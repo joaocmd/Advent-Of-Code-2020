@@ -59,8 +59,10 @@ fn main() {
         Pos { x: 5, y: 1 },
         Pos { x: 7, y: 1 },
         Pos { x: 1, y: 2 },
-    ].iter().map(|x| count_trees(&grid, Pos { x: 0, y: 0 }, *x)).fold(1, |x, y| x*y);
+    ]
+    .iter()
+    .map(|x| count_trees(&grid, Pos { x: 0, y: 0 }, *x))
+    .fold(1, |x, y| x * y);
 
     println!("{:?}", res)
-
 }

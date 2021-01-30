@@ -39,28 +39,28 @@ fn main() {
     println!("{:?}", res);
 
     // part 2
-let file = File::open("input.txt").unwrap();
-let reader = BufReader::new(file);
+    let file = File::open("input.txt").unwrap();
+    let reader = BufReader::new(file);
 
-let mut res = 0;
-for line in reader.lines() {
-    let only_whitespace = line.unwrap().replace("-", " ").replace(":", "");
-    let (i, j, chr, pass) = scan!(
-        &only_whitespace,
-        |x| char::is_whitespace(x),
-        usize,
-        usize,
-        char,
-        String
-    );
+    let mut res = 0;
+    for line in reader.lines() {
+        let only_whitespace = line.unwrap().replace("-", " ").replace(":", "");
+        let (i, j, chr, pass) = scan!(
+            &only_whitespace,
+            |x| char::is_whitespace(x),
+            usize,
+            usize,
+            char,
+            String
+        );
 
-    let (i, j, chr, pass) = (i.unwrap(), j.unwrap(), chr.unwrap() as u8, pass.unwrap());
-    let pass_bytes = pass.as_bytes();
-    if (pass_bytes[i - 1] == chr && pass_bytes[j - 1] != chr)
-        || (pass_bytes[i - 1] != chr && pass_bytes[j - 1] == chr)
-    {
-        res += 1
+        let (i, j, chr, pass) = (i.unwrap(), j.unwrap(), chr.unwrap() as u8, pass.unwrap());
+        let pass_bytes = pass.as_bytes();
+        if (pass_bytes[i - 1] == chr && pass_bytes[j - 1] != chr)
+            || (pass_bytes[i - 1] != chr && pass_bytes[j - 1] == chr)
+        {
+            res += 1
+        }
     }
-}
-println!("{:?}", res);
+    println!("{:?}", res);
 }
