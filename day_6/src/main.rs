@@ -6,7 +6,7 @@ fn parse_input(file: &str) -> Vec<String> {
     contents.split("\n\n").map(|x| x.to_string()).collect()
 }
 
-fn count_group(group: &str, operation: fn(HashSet<char>, &str) -> HashSet<char>) -> i32 {
+fn count_group(group: &str, operation: impl Fn(HashSet<char>, &str) -> HashSet<char>) -> i32 {
     let persons: Vec<&str> = group.split('\n').filter(|x| x.len() != 0).collect();
     let res = persons[1..]
         .iter()
