@@ -1,7 +1,7 @@
 use lazy_static::lazy_static;
+use std::collections::HashSet;
 use std::fs;
 use std::str::FromStr;
-use std::collections::HashSet;
 
 #[derive(Debug, Clone)]
 enum Cell {
@@ -85,7 +85,11 @@ impl Plane {
         res
     }
 
-    pub fn seat_round(&self, nr: usize, counter: impl Fn(&Self, &Point) -> usize) -> (Plane, usize) {
+    pub fn seat_round(
+        &self,
+        nr: usize,
+        counter: impl Fn(&Self, &Point) -> usize,
+    ) -> (Plane, usize) {
         let mut cells = self.cells.clone();
         let mut empty = self.empty.clone();
         let mut occupied = self.occupied.clone();
@@ -108,7 +112,14 @@ impl Plane {
             }
         }
 
-        (Plane { cells, empty, occupied }, changes)
+        (
+            Plane {
+                cells,
+                empty,
+                occupied,
+            },
+            changes,
+        )
     }
 }
 
@@ -155,7 +166,7 @@ fn main() {
         plane = x.0;
         if x.1 == 0 {
             dbg!(plane.occupied.len());
-            break
+            break;
         }
     }
 
@@ -165,7 +176,7 @@ fn main() {
         plane = x.0;
         if x.1 == 0 {
             dbg!(plane.occupied.len());
-            break
+            break;
         }
     }
 }
